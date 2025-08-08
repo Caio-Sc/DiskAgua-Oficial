@@ -25,7 +25,7 @@ module.exports = {
         .map(
           (track, index) =>
             `${index + 1}. [${track.title}](${track.uri}) (${
-              track.isStream ? "Ao Vivo" : formatTime(track.duration)
+              track.isStream ? "\n(Ao Vivo)" : formatTime(track.duration)
             })`
         )
         .join("\n");
