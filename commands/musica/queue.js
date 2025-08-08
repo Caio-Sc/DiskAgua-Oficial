@@ -25,7 +25,7 @@ module.exports = {
         .map(
           (track, index) =>
             `${index + 1}. [${track.title}](${track.uri}) (${
-              track.isStream ? "\n(Ao Vivo)" : formatTime(track.duration)
+              track.isStream ? "Ao Vivo" : formatTime(track.duration)
             })`
         )
         .join("\n");
@@ -34,7 +34,7 @@ module.exports = {
         .setDescription(
           `[${currentTrack.title}](${currentTrack.uri}) ${
             currentTrack.isStream
-              ? "Ao Vivo"
+              ? "\n(Ao Vivo)"
               : "\n" + criarBarraDeProgresso(currentTrack, playerPosition)
           }`
         )
