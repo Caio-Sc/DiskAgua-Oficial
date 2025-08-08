@@ -34,7 +34,7 @@ module.exports = {
         .setDescription(
           `[${currentTrack.title}](${currentTrack.uri}) ${
             currentTrack.isStream
-              ? "\n(Ao Vivo)"
+              ? "(Ao Vivo)"
               : "\n" + criarBarraDeProgresso(currentTrack, playerPosition)
           }`
         )
