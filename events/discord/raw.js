@@ -3,7 +3,7 @@ const { Events } = require("discord.js");
 module.exports = {
   name: Events.Raw,
   once: false,
-  execute(client, data) {
-    client.manager.updateVoiceState(data);
+  async execute(client, data) {
+    await client.manager.updateVoiceState(data);
   },
 };

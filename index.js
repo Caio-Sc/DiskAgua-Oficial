@@ -2,7 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
-const { Manager, UseNodeOptions } = require("magmastream");
+const { Manager, TrackPartial } = require("magmastream");
 const { token, clientId, guildId, nodes } = require("./config.json");
 
 // Create a new client instance
@@ -13,24 +13,25 @@ const client = new Client({
 client.commands = new Collection();
 
 client.manager = new Manager({
-  autoPlay: true, // Optional! - Recommanded to be true
-  usePriority: false, // Optional! - Recommanded if you have more than 1 node
-  replaceYouTubeCredentials: true, // Optional! - Recommanded to be true
-  nodes: [
-        {
-            host: "127.0.0.1", 
-            port: 25794, 
-            password: "lavalinkCaioSclavi", 
-            secure: false, 
-            retryAmount: 500, 
-            retryDelay: 300000, 
-            resumeStatus: true,
-            resumeTimeout: 300
-        }
-    ],
-  send: async (id, payload) => {
-    const guild = client.guilds.cache.get(id);
-    if (guild) await guild.shard.send(payload);
+  playNextOnEnd: true, // Optional - Recommanded to be true
+  enablePriorityMode: false, // Optional - Recommanded if you have more than 1 node
+  normalizeYouTubeTitles: true, // Optional - Recommanded to be true
+  trackPartial: [
+    TrackPartial.Author,
+    TrackPartial.ArtworkUrl,
+    TrackPartial.Duration,
+    TrackPartial.Identifier,
+    TrackPartial.PluginInfo,
+    TrackPartial.Requester,
+    TrackPartial.SourceName,
+    TrackPartial.Title,
+    TrackPartial.Track,
+    TrackPartial.Uri,
+  ], // Optional but recommanded!
+  nodes: nodes,
+  send: (packet) => {
+    const guild = client.guilds.cache.get(packet.d.guild_id);
+    if (guild) guild.shard.send(packet);
   },
 });
 

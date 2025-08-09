@@ -12,7 +12,7 @@ module.exports = {
     const filaEmbed = new EmbedBuilder().setColor(embedColor);
     const client = interaction.client;
     const serverId = interaction.guildId;
-    const player = client.manager.get(serverId);
+    const player = client.manager.getPlayer(serverId);
     if (!player || !player.queue.current) {
       tocandoAgoraEmbed.setTitle("Não há músicas na fila.");
       interaction.reply({ embeds: [tocandoAgoraEmbed] });
@@ -49,7 +49,7 @@ module.exports = {
           .setDescription(`${tracksList}`)
           .setFooter({
             text: `Tempo total da fila: ${formatTime(
-              queue.duration - playerPosition
+              await queue.duration() - playerPosition
             )} (${queue.length})`,
           })
           .setTimestamp();

@@ -55,8 +55,8 @@ module.exports = {
       return;
     }
 
-    let player = client.manager.get(serverId);
-
+    let player = client.manager.getPlayer(serverId);
+    
     if (!player) {
       player = client.manager.create({
         guildId: serverId,
@@ -68,9 +68,8 @@ module.exports = {
     } else {
       player.setVoiceChannelId(voiceID);
     }
-
     player.connect();
-
+    
     const shouldStart = (!player.playing && !player.paused) || !player.queue.current; //verifica se o player está tocando ou pausado, ou se não há música atual na fila
     if (res.loadType === "playlist") {
       titulo = `Playlist: [${res.playlist.name}](${song})`;

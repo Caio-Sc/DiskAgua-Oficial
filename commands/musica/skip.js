@@ -20,7 +20,7 @@ module.exports = {
 
     const client = interaction.client;
     const serverId = interaction.guildId;
-    const player = client.manager.get(serverId);
+    const player = client.manager.getPlayer(serverId);
     if (!player.queue.current) {
       respondeEmbed.setTitle("Não há música tocando no momento.");
     } else {
