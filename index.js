@@ -2,7 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
-const { Manager, TrackPartial } = require("magmastream");
+const { Manager, TrackPartial, StateStorageType } = require("magmastream");
 const { token, clientId, guildId, nodes } = require("./config.json");
 
 // Create a new client instance
@@ -29,6 +29,10 @@ client.manager = new Manager({
     TrackPartial.Uri,
   ], // Optional but recommanded!
   nodes: nodes,
+  stateSTorage: {
+    type: StateStorageType.JSON, // or StateStorageType.Redis -- you need a working redisdb for this and input your credentials.
+    deleteInactivePlayers: true, // defaults to false, i recommend having it to true.
+  },
   send: (packet) => {
     const guild = client.guilds.cache.get(packet.d.guild_id);
     if (guild) guild.shard.send(packet);
