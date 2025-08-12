@@ -1,13 +1,22 @@
 // Require the necessary discord.js classes
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
-const { Manager, TrackPartial, StateStorageType } = require("magmastream");
+const { Client, Collection, GatewayIntentBits, ActivityType, PresenceUpdateStatus } = require("discord.js");
+const { Manager, TrackPartial, StateStorageType, } = require("magmastream");
 const { token, clientId, guildId, nodes } = require("./config.json");
 
 // Create a new client instance
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
+  presence: {
+    activities: [
+      {
+        name: "música",
+        type: ActivityType.Listening,
+      },
+    ],
+    status: PresenceUpdateStatus.DoNotDisturb,
+  },
 });
 
 client.commands = new Collection();
