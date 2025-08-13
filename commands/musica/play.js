@@ -73,10 +73,10 @@ module.exports = {
     const shouldStart = (!player.playing && !player.paused) || !player.queue.current; //verifica se o player está tocando ou pausado, ou se não há música atual na fila
     if (res.loadType === "playlist") {
       titulo = `Playlist: [${res.playlist.name}](${song})`;
-      res.playlist.tracks.forEach((track) => player.queue.add(track));
+      res.playlist.tracks.forEach(async (track) => await player.queue.add(track));
     } else {
       titulo = `[${res.tracks[0].title}](${res.tracks[0].uri}})`;
-      player.queue.add(res.tracks[0]);
+      await player.queue.add(res.tracks[0]);
     }
 
     if (shouldStart) await player.play();

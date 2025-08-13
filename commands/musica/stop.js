@@ -24,8 +24,8 @@ module.exports = {
           iconURL: await interaction.user.displayAvatarURL(),
         })
         .setTimestamp();
-      player.queue.clear();
-      player.stop();
+      await player.queue.clear();
+      await player.stop();
     }
     await interaction.reply({
       embeds: [respondeEmbed],

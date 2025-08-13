@@ -31,7 +31,7 @@ module.exports = {
           iconURL: interaction.user.displayAvatarURL(),
         })
         .setTimestamp();
-      player.stop(quantidade);
+      await player.stop(quantidade);
     }
     await interaction.reply({
       embeds: [respondeEmbed],

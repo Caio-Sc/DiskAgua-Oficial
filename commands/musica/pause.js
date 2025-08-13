@@ -24,7 +24,7 @@ module.exports = {
           iconURL: interaction.user.displayAvatarURL(),
         })
         .setTimestamp();
-      player.pause(true);
+      await player.pause(true);
     }
     await interaction.reply({
       embeds: [respondeEmbed],
