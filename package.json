@@ -3,7 +3,7 @@
     "@discordjs/voice": "^0.18.0",
     "discord.js": "^14.21.0",
     "install": "^0.13.0",
-    "magmastream": "^2.9.0-dev.45"
+    "magmastream": "^2.9.0-dev.46"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
