@@ -40,7 +40,7 @@ module.exports = {
         )
         .setFooter({
           text: `Requisitado por ${currentTrack.requester.username}`,
-          iconURL: interaction.user.displayAvatarURL(),
+          iconURL: `https://cdn.discordapp.com/avatars/${currentTrack.requester.id}/${currentTrack.requester.avatar}.webp`,
         })
         .setTimestamp();
       if (tracksList.length > 0) {
