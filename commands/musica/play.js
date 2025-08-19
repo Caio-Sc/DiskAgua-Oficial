@@ -75,7 +75,7 @@ module.exports = {
       titulo = `Playlist: [${res.playlist.name}](${song})`;
       res.playlist.tracks.forEach(async (track) => await player.queue.add(track));
     } else {
-      titulo = `[${res.tracks[0].title}](${res.tracks[0].uri}})`;
+      titulo = `[${res.tracks[0].title}](${res.tracks[0].uri})`;
       await player.queue.add(res.tracks[0]);
     }
 
